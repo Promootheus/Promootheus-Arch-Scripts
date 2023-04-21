@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# To get RGB functionality working on the Acer Nitro 5
+
 # Clone the acer-predator-turbo-and-rgb-keyboard-linux-module repository from GitHub
 git clone https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module
 
