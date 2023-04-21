@@ -13,3 +13,7 @@ chmod +x ./*.sh
 
 # Run the install_service.sh script with superuser privileges to install the systemd service for the keyboard module
 sudo ./install_service.sh
+
+# Assign a setting ./facer_rgb.py --help for more
+./facer_rgb.py -m 2 -s 3 -b 100
+
