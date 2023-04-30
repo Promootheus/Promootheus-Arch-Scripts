@@ -1,0 +1,5 @@
+I needed a way of safely aquiring APK's that I can sideload onto the Meta Quest 2.
+
+After looking at the various options I came to the conclusion that the safest way is to use Android abd-tools and get them direct from my phone.
+Because, for security, I will need update these apps on the Quest on a regular basis,  I constructed a shell script to make it easy to extract them from my phone.
+One extracted I use SideQuest to install them.
