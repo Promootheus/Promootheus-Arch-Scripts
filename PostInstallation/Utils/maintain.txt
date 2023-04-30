@@ -1,0 +1,2 @@
+This script runs the core maintenance I am led to believe is needed on Arch. 
+The frequency this should be run is up for debate, though I understand once a week should be adequate.
