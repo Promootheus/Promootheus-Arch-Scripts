@@ -14,6 +14,12 @@ echo "On your Android device, enable USB debugging by going to Settings > About 
 
 echo "Please connect your Android device to your computer using a USB cable."
 
+# Check if an ADB connection is possible
+while ! adb wait-for-device; do
+    echo "ADB connection not detected. Please check your phone settings and press enter to try again."
+    read -r
+done
+
 # Prompt for filtering package list
 echo "Enter a keyword to filter the package list, or press enter to list all packages:"
 read keyword
@@ -62,5 +68,3 @@ echo "Extracting the APK file..."
 adb pull "$apk_path" "$output_file"
 
 echo "The APK file has been extracted as $output_file."
-
-
