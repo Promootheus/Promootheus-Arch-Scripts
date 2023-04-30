@@ -1,0 +1,15 @@
+TRIM is an important feature for SSDs (Solid State Drives) because it helps to maintain their performance and prolong their lifespan. 
+SSDs use NAND-based flash memory to store data, which is different from the magnetic platters used in traditional hard disk drives (HDDs). 
+One of the key differences is that SSDs need to erase blocks of data before they can write new data, while HDDs can simply overwrite existing data.
+
+When you delete a file on an SSD, the operating system marks the corresponding blocks of data as free, but the data is not actually erased. 
+Instead, the SSD marks the blocks as invalid and leaves the data intact until it needs to be overwritten. 
+This is done to avoid the performance overhead of erasing the blocks immediately.
+
+Over time, as you write and delete more data on your SSD, the available free space on the drive becomes fragmented, and the SSD's performance can degrade due to write amplification. 
+Write amplification occurs when the SSD has to move data around to create contiguous free blocks, which can cause additional wear and tear on the NAND cells.
+
+TRIM helps to mitigate these issues by allowing the operating system to tell the SSD which blocks of data are no longer needed, so that the SSD can erase them proactively and create new free blocks. 
+By doing so, TRIM helps to reduce write amplification, maintain the performance of the SSD, and prolong its lifespan.
+
+Overall, TRIM is an important feature for SSDs, and it's recommended to enable it on your system if your SSD supports it.
