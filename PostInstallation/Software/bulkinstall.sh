@@ -41,6 +41,7 @@ yay -S --noconfirm grapejuice
 yay -S --noconfirm minecraft-launcher
 yay -S --noconfirm heroic-games-launcher-bin
 yay -S --noconfirm sidequest
+yay -S --noconfirm alvr
 
 # Audio Tools
 yes | sudo pacman -Syu ardour
