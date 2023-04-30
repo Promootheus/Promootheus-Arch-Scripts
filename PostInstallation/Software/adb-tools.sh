@@ -27,10 +27,12 @@ else
     packages_list=($(adb shell pm list packages | grep "$keyword" | sed "s/^package://"))
 fi
 
-# Display the packages as a numerical list
+# Display the packages as a numerical list with versionName
 echo "Numerical list of packages:"
 for i in "${!packages_list[@]}"; do
-    echo "$((i + 1)). ${packages_list[i]}"
+    package_name="${packages_list[i]}"
+    version_name=$(adb shell dumpsys package "$package_name" | grep 'versionName' | awk '{print $1}' | sed "s/versionName=//")
+    echo "$((i + 1)). ${package_name} (versionName: ${version_name})"
 done
 
 # Prompt user to select a package by number
@@ -45,16 +47,20 @@ done
 
 # Get the package name from the array
 package_name="${packages_list[$((package_number - 1))]}"
+version_name=$(adb shell dumpsys package "$package_name" | grep 'versionName' | awk '{print $1}' | sed "s/versionName=//")
 
 # Obtain the APK path
 echo "Getting the APK path..."
 apk_path=$(adb shell pm path "$package_name" | sed "s/^package://")
 
+# Generate output file name
+output_file="$(echo "${package_name##*.}" | awk '{print tolower($0)}')-${version_name}.apk"
+output_file="${output_file//\//-}"
+
 # Pull the APK file
-echo "Enter the desired output file name (e.g., output_file.apk):"
-read output_file
 echo "Extracting the APK file..."
 adb pull "$apk_path" "$output_file"
 
 echo "The APK file has been extracted as $output_file."
+
 
