@@ -18,18 +18,33 @@ echo "Please connect your Android device to your computer using a USB cable."
 echo "Enter a keyword to filter the package list, or press enter to list all packages:"
 read keyword
 
-# List installed packages
+# List installed packages and create an indexed array
 if [ -z "$keyword" ]; then
     echo "Listing all installed packages..."
-    adb shell pm list packages
+    packages_list=($(adb shell pm list packages | sed "s/^package://"))
 else
     echo "Listing installed packages containing the keyword '$keyword'..."
-    adb shell pm list packages | grep "$keyword"
+    packages_list=($(adb shell pm list packages | grep "$keyword" | sed "s/^package://"))
 fi
 
-# Get package name from the user
-echo "Enter the package name of the app you want to extract (e.g., com.microsoft.emmx for Microsoft Edge):"
-read package_name
+# Display the packages as a numerical list
+echo "Numerical list of packages:"
+for i in "${!packages_list[@]}"; do
+    echo "$((i + 1)). ${packages_list[i]}"
+done
+
+# Prompt user to select a package by number
+echo "Enter the number corresponding to the package you want to extract:"
+read package_number
+
+# Validate the input
+while [[ $package_number -lt 1 || $package_number -gt ${#packages_list[@]} ]]; do
+    echo "Invalid input. Please enter a number between 1 and ${#packages_list[@]}:"
+    read package_number
+done
+
+# Get the package name from the array
+package_name="${packages_list[$((package_number - 1))]}"
 
 # Obtain the APK path
 echo "Getting the APK path..."
@@ -42,3 +57,4 @@ echo "Extracting the APK file..."
 adb pull "$apk_path" "$output_file"
 
 echo "The APK file has been extracted as $output_file."
+
