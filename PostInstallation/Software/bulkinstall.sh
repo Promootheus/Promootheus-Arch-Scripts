@@ -9,11 +9,19 @@ sudo pacman -Syu
 
 # Install System Tools
 
+# Install git
+sudo pacman -S git
+
+# Install yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
+
 yes | sudo pacman -Syu flatpak
-yes | sudo pacman -Syu ksysguard
 yes | sudo pacman -Syu plasma-wayland-session
 yes | sudo pacman -Syu partitionmanager
-yay -S --noconfirm stacer
 yay -S --noconfirm timeshift
 
 # Utility Tools
@@ -22,13 +30,15 @@ yes | sudo pacman -Syu ntfs-3g
 yes | sudo pacman -Syu spectacle
 yes | sudo pacman -Syu filelight
 yay -Syu gpu-screen-recorder-git
-sudo -H pip install -U oletools[full]
 
 # System Monitoring Tools
 yes | sudo pacman -Syu btop
+yay -S --noconfirm stacer
+yes | sudo pacman -Syu ksysguard
 
-# Network Tools
+# CyberSecurity Tools
 yes | sudo pacman -Syu wireshark-qt
+sudo -H pip install -U oletools[full]
 
 # NVIDIA Drivers and Tools
 yes | sudo pacman -Syu nvidia-inst
