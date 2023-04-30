@@ -14,9 +14,18 @@ echo "On your Android device, enable USB debugging by going to Settings > About 
 
 echo "Please connect your Android device to your computer using a USB cable."
 
+# Prompt for filtering package list
+echo "Enter a keyword to filter the package list, or press enter to list all packages:"
+read keyword
+
 # List installed packages
-echo "Listing installed packages..."
-adb shell pm list packages
+if [ -z "$keyword" ]; then
+    echo "Listing all installed packages..."
+    adb shell pm list packages
+else
+    echo "Listing installed packages containing the keyword '$keyword'..."
+    adb shell pm list packages | grep "$keyword"
+fi
 
 # Get package name from the user
 echo "Enter the package name of the app you want to extract (e.g., com.microsoft.emmx for Microsoft Edge):"
