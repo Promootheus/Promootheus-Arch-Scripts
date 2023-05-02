@@ -1,5 +1,3 @@
-#QT Python code for a GUI interface to Facer
-
 import os
 import json
 import subprocess
