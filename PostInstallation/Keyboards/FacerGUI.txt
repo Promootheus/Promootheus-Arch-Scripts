@@ -1,0 +1,1 @@
+A GUI front end to facerRGB to control the lights on my Acer Nitro5, created in QT Creator
