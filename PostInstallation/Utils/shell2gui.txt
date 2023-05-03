@@ -1,0 +1,7 @@
+This is QT Python code that gives a gui front end with buttons to run bash commands via a gui.
+Contains an embedded QTermWidget
+
+
+
+Create a folder in your Documents folder called shell2gui and place shell scripts in there.
+Look at maintain.sh to see the formatting of the title header.
